@@ -1,0 +1,21 @@
+{
+  "contextRoot": "",
+  "internalPort": "",
+  "healthCheck": "",
+  "isHttps": false,
+  "ignoredPaths": [
+    "/.project",
+    "*/node_modules*",
+    "*/.git/*",
+    "*/.DS_Store",
+    "*/*.swp",
+    "*/*.swx",
+    "*/4913",
+    "/load-test*",
+    "*/.dockerignore",
+    "*/.gitignore",
+    "*/*~",
+    "/.settings"
+  ],
+  "statusPingTimeout": ""
+}

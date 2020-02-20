@@ -1,0 +1,41 @@
+apiVersion: 1.0.0
+metadata:
+  generateName: openLiberty
+projects:
+- name: openLiberty
+  source:
+    type: git
+    location: https://github.com/rajivnathan/openLiberty.git
+components:
+- type: chePlugin
+  id: redhat/java/latest
+  memoryLimit: 1512Mi
+- alias: runtime
+  mountSources: true
+  type: dockerimage
+  image: jeevandroid/open-liberty-dev:latest
+  memoryLimit: 768Mi
+  command:
+  - tail
+  args:
+  - -f
+  - /dev/null
+  volumes:
+  - name: m2
+    containerPath: /home/user/.m2
+  endpoints:
+  - name: 9090/tcp
+    port: 9090
+commands:
+- actions:
+  - command: TEST_ENV=true /artifacts/bin/build.sh
+    component: runtime
+    type: exec
+    workdir: /projects/openLiberty
+  name: Build
+- actions:
+  - command: /artifacts/bin/run.sh
+    component: runtime
+    type: exec
+    workdir: /projects/openLiberty
+  name: Run
